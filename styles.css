@@ -1,0 +1,938 @@
+/* ===== VARIABLES Y RESET ===== */
+:root {
+  --primary: #e83e8c;
+  --primary-light: #f560a3;
+  --primary-dark: #c7297a;
+  --secondary: #667eea;
+  --accent: #f093fb;
+  --menstrual: #ffebee;
+  --folicular: #e8f5e9;
+  --ovulacion: #fffde7;
+  --lutea: #f3e5f5;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg: #ffffff;
+  --border-radius: 24px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== BODY Y FONDO ===== */
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease-in-out infinite;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 50px 35px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 550px;
+  position: relative;
+  animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: var(--transition);
+}
+
+.container:hover {
+  box-shadow: 0 40px 80px rgba(232, 62, 140, 0.3);
+  transform: translateY(-12px) scale(1.01);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(20px);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-25px) scale(1.1);
+  }
+}
+
+h1 {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 48px;
+  margin-bottom: 12px;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(232, 62, 140, 0.2), 0 0 20px rgba(102, 126, 234, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(232, 62, 140, 0.4), 0 0 40px rgba(102, 126, 234, 0.2);
+  }
+}
+
+.tagline {
+  color: var(--text-light);
+  font-size: 15px;
+  margin-bottom: 5px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  animation: slideInLeft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.form-group:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.form-group:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.form-group:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left;
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+.icon-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.icon-label i {
+  color: var(--primary);
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.icon-label:hover i {
+  animation: iconBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(15deg);
+  }
+}
+
+input[type="date"],
+input[type="number"] {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #e8e8ff;
+  width: 100%;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #f9f5ff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--text);
+}
+
+input[type="date"]:focus,
+input[type="number"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(232, 62, 140, 0.15), inset 0 0 10px rgba(232, 62, 140, 0.05);
+  background-color: #fff;
+  transform: translateY(-3px) scale(1.01);
+}
+
+input[type="date"]::placeholder,
+input[type="number"]::placeholder {
+  color: var(--text-light);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.tooltip i {
+  color: var(--primary-light);
+  font-size: 15px;
+  cursor: help;
+  transition: var(--transition);
+}
+
+.tooltip i:hover {
+  transform: scale(1.3);
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 220px;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 12px;
+  position: absolute;
+  z-index: 10;
+  bottom: 135%;
+  left: 50%;
+  margin-left: -110px;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  font-size: 12px;
+  pointer-events: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.tooltip .tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #34495e transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.btn {
+  padding: 16px 24px;
+  border-radius: var(--border-radius);
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(232, 62, 140, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(232, 62, 140, 0.5), 0 0 30px rgba(102, 126, 234, 0.3);
+  letter-spacing: 1px;
+}
+
+.btn-primary:active {
+  transform: translateY(-2px);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-20deg);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loader {
+  display: none;
+  width: 50px;
+  height: 50px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.loader::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-color: var(--primary) transparent var(--primary) transparent;
+  animation: loader-spin 1.2s linear infinite;
+}
+
+@keyframes loader-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.results {
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
+  transition: var(--transition);
+  display: none;
+  background: linear-gradient(135deg, rgba(232, 62, 140, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+  border: 1px solid rgba(232, 62, 140, 0.1);
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.results-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.phase-name {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 15px 0;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: phaseNamePulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes phaseNamePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08) translateY(-3px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+.phase-info {
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.counter {
+  font-size: 17px;
+  margin-top: 15px;
+  color: var(--text);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.date-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid rgba(232, 62, 140, 0.1);
+}
+
+.date-info div {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.date-info span {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.progress-container {
+  margin: 30px 0 20px;
+  position: relative;
+  height: 14px;
+  background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 12px;
+  transition: width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 15px rgba(232, 62, 140, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(232, 62, 140, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(232, 62, 140, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.phase-marker {
+  position: absolute;
+  top: -12px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--text);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.phase-marker:hover {
+  animation: markerPulse 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.4);
+  }
+}
+
+.phase-label {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.symptoms-section,
+.tips-section {
+  margin-top: 25px;
+  text-align: left;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(232, 62, 140, 0.1);
+  transition: var(--transition);
+}
+
+.symptoms-section:hover,
+.tips-section:hover {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(232, 62, 140, 0.15), 0 0 20px rgba(102, 126, 234, 0.1);
+  transform: translateY(-5px);
+}
+
+.symptoms-title,
+.tips-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.symptoms-title i,
+.tips-title i {
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.symptoms-list,
+.tips-list {
+  font-size: 14px;
+  line-height: 1.8;
+  padding-left: 24px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.symptoms-list li,
+.tips-list li {
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+
+.symptoms-list li:hover,
+.tips-list li:hover {
+  color: var(--primary);
+  margin-left: 8px;
+  animation: slideRight 0.3s ease-out;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.menstrual-bg {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 183, 183, 0.1));
+  border: 2px solid rgba(255, 107, 107, 0.2);
+}
+
+.folicular-bg {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(129, 255, 129, 0.1));
+  border: 2px solid rgba(76, 175, 80, 0.2);
+}
+
+.ovulacion-bg {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 129, 0.1));
+  border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.lutea-bg {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(129, 129, 255, 0.1));
+  border: 2px solid rgba(156, 39, 176, 0.2);
+}
+
+.extra-info {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, rgba(232, 62, 140, 0.85), rgba(102, 126, 234, 0.85));
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(232, 62, 140, 0.3);
+  animation: slideUp 0.8s ease-out 0.6s both;
+}
+
+.love {
+  color: var(--primary);
+  display: inline-block;
+  animation: heartBeat 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.25);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.25);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+/* Calendar preview */
+.calendar-preview {
+  margin-top: 25px;
+  display: none;
+  padding-top: 25px;
+  border-top: 2px solid rgba(232, 62, 140, 0.1);
+}
+
+.calendar-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.calendar-header div {
+  text-align: center;
+  font-weight: 700;
+  padding: 8px 0;
+  font-size: 12px;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.calendar-day {
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+  background: linear-gradient(135deg, #f5f5f5, #ffffff);
+  border: 2px solid transparent;
+}
+
+.calendar-day:hover {
+  animation: dayHover 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes dayHover {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  100% {
+    transform: scale(1.12);
+    box-shadow: 0 8px 25px rgba(232, 62, 140, 0.2);
+  }
+}
+
+.calendar-day.today {
+  border: 2px solid var(--primary);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+}
+
+.calendar-day.menstrual {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  color: #c62828;
+}
+
+.calendar-day.folicular {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  color: #2e7d32;
+}
+
+.calendar-day.ovulacion {
+  background: linear-gradient(135deg, #fffde7, #fff9c4);
+  color: #f57f17;
+}
+
+.calendar-day.lutea {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+  color: #6a1b9a;
+}
+
+.calendar-day.expected-period {
+  border-style: dashed;
+  border-color: #ff8181;
+  opacity: 0.6;
+}
+
+.calendar-day.expected-ovulation {
+  border-style: dashed;
+  border-color: #81ffb2;
+  opacity: 0.6;
+}
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 35px 24px;
+    max-width: 95%;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .tagline {
+    font-size: 13px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .phase-name {
+    font-size: 28px;
+  }
+
+  .calendar-grid,
+  .calendar-header {
+    gap: 6px;
+  }
+
+  .calendar-day {
+    font-size: 11px;
+  }
+
+  .date-info {
+    flex-direction: column;
+  }
+
+  .symptoms-section,
+  .tips-section {
+    padding: 16px;
+  }
+
+  .symptoms-list,
+  .tips-list {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 28px 18px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .tagline {
+    font-size: 12px;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  input[type="date"],
+  input[type="number"] {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .phase-name {
+    font-size: 24px;
+  }
+
+  .results {
+    padding: 20px 16px;
+  }
+
+  .results-title {
+    font-size: 14px;
+  }
+
+  .symptoms-title,
+  .tips-title {
+    font-size: 13px;
+  }
+}
+
+/* Animaciones */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

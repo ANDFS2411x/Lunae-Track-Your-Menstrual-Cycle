@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selene - Seguimiento de Ciclo Menstrual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container" id="contenedor">
+    <div class="header">
+      <h1> Selene 🌙</h1>
+      <p class="tagline">La diosa del ciclo lunar en ti</p>
+      <p class="tagline">Sincroniza tu ritmo con la Luna</p>
+    </div>
+
+    <div class="form-group">
+      <label class="icon-label" for="lastPeriod">
+        <i class="fas fa-calendar-alt"></i> Primer día del último periodo:
+        <div class="tooltip">
+          <i class="fas fa-info-circle"></i>
+          <span class="tooltip-text">Selecciona el primer día de tu último periodo menstrual.</span>
+        </div>
+      </label>
+      <input type="date" id="lastPeriod">
+    </div>
+
+    <div class="form-group">
+      <label class="icon-label" for="cycleLength">
+        <i class="fas fa-sync-alt"></i> Duración del ciclo (días):
+        <div class="tooltip">
+          <i class="fas fa-info-circle"></i>
+          <span class="tooltip-text">El número promedio de días desde el primer día de un periodo hasta el primer día del siguiente.</span>
+          <span class="tooltip-text">El número promedio de días desde el primer día de un periodo hasta el primer día del siguiente.</span>
+        </div>
+      </label>
+      <input type="number" id="cycleLength" value="28" min="21" max="40">
+    </div>
+
+    <div class="form-group">
+      <label class="icon-label" for="periodLength">
+        <i class="fas fa-tint"></i> Duración del periodo (días):
+        <div class="tooltip">
+          <i class="fas fa-info-circle"></i>
+          <span class="tooltip-text">Cuántos días suele durar tu sangrado menstrual.</span>
+        </div>
+      </label>
+      <input type="number" id="periodLength" value="5" min="3" max="10">
+    </div>
+
+    <button id="calcularBtn" class="btn btn-primary" onclick="calcularFase()">
+      <i class="fas fa-calculator"></i> Calcular Fase
+    </button>
+
+    <div class="loader" id="loader"></div>
+
+    <div class="results" id="results">
+      <p class="results-title">Estado actual de tu ciclo</p>
+      <div class="phase-name" id="phaseName"></div>
+      
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="phase-marker" id="menstrualMarker" style="left: 0%;">
+          <span class="phase-label">M</span>
+        </div>
+        <div class="phase-marker" id="folicularMarker">
+          <span class="phase-label">F</span>
+        </div>
+        <div class="phase-marker" id="ovulacionMarker">
+          <span class="phase-label">O</span>
+        </div>
+        <div class="phase-marker" id="luteaMarker">
+          <span class="phase-label">L</span>
+        </div>
+      </div>
+      
+      <p class="phase-info" id="phaseInfo"></p>
+      <p class="counter" id="counter"></p>
+      
+      <div class="date-info">
+        <div id="lastPeriodInfo">Último periodo: <span id="lastPeriodDate"></span></div>
+        <div id="nextPeriodInfo">Próximo periodo: <span id="nextPeriodDate"></span></div>
+      </div>
+      
+      <div class="symptoms-section">
+        <p class="symptoms-title"><i class="fas fa-clipboard-list"></i> Posibles síntomas en esta fase:</p>
+        <ul class="symptoms-list" id="symptomsList"></ul>
+      </div>
+      
+      <div class="tips-section">
+        <p class="tips-title"><i class="fas fa-lightbulb"></i> Consejos para esta fase:</p>
+        <ul class="tips-list" id="tipsList"></ul>
+      </div>
+      
+      <div class="calendar-preview" id="calendarPreview">
+        <p class="calendar-title">Calendario del ciclo</p>
+        <div class="calendar-header" id="calendarHeader"></div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--menstrual);"></div>
+            <span>Menstrual</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--folicular);"></div>
+            <span>Folicular</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--ovulacion);"></div>
+            <span>Ovulación</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--lutea);"></div>
+            <span>Lútea</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="extra-info">Esta información es solo una estimación basada en ciclos regulares. Cada cuerpo es diferente.</p>
+  </div>
+
+  <div class="footer">
+    <p>Hecho con <span class="love">❤</span> por Andrés Fábregas</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html> 
